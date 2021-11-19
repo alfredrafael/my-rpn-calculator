@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const [calc, setCalc] = useState("");
   const [result, setResult] = useState("");
+  const [result, setResult] = useState("");
 
   const ops = ["/", "*", "+", "-", "."];
 
