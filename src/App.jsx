@@ -97,9 +97,9 @@ const App = () => {
   };
 
   const clearField = () => {
-    setValueA(0);
-    setValueB(0);
-    setResult(0);
+    setValueA("");
+    setValueB("");
+    setResult("");
   };
 
   const myClasses = useStyles();
@@ -135,7 +135,7 @@ const App = () => {
               <Grid container spacing={2} justify="center">
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <Input
-                    text
+                    type="number"
                     placeholder="Enter Value A"
                     value={valueA}
                     onChange={(e) => setValueA(e.target.value)}
@@ -143,6 +143,7 @@ const App = () => {
                   />
                   <br />
                   <Input
+                    type="number"
                     placeholder="Enter Value B"
                     value={valueB}
                     onChange={(e) => setValueB(e.target.value)}
