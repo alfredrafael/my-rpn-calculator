@@ -53,9 +53,15 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const [calc, setCalc] = useState("");
   const [result, setResult] = useState("");
-  const [result, setResult] = useState("");
+  const [stack, setStack] = useState([]);
 
   const ops = ["/", "*", "+", "-", "."];
+
+  const enter = (value) => {
+    const innerStack = [];
+    setStack(value);
+    return innerStack;
+  };
 
   const updateCalc = (value) => {
     if (
@@ -139,13 +145,18 @@ const App = () => {
               >
                 RPM Calculator
               </Typography>
+              <div
+                style={{
+                  textAlign: "left",
+                  marginLeft: "20%",
+                  marginBottom: "2%",
+                }}
+              >
+                {enter ? <span>({enter})</span> : "ddd"}
+              </div>
 
               <Grid container spacing={2} justify="center">
-                <div className={myClasses.display}>
-                  {result ? <span>({result})</span> : ""}
-                  &nbsp;
-                  {calc || "0"}
-                </div>
+                <div className={myClasses.display}>{calc || "0"}</div>
               </Grid>
               <Grid container spacing={2} justify="center">
                 <div style={{}}>
@@ -195,8 +206,11 @@ const App = () => {
                   <Button onClick={calculate} className={myClasses.calcButton}>
                     =
                   </Button>
-                  <Button onClick={deleteLast} className={myClasses.calcButton}>
-                    DEL
+                  <Button
+                    onClick={() => enter()}
+                    className={myClasses.calcButton}
+                  >
+                    ENTER
                   </Button>
                 </ButtonGroup>
               </Grid>
