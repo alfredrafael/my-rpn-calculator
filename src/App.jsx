@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   AppBar,
@@ -20,12 +20,17 @@ const useStyles = makeStyles((theme) => ({
   myLogo: {
     maxWidth: "5em",
   },
+  myAppBar: {
+    background: "#040182",
+  },
   container: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
   },
-  myAppBar: {
-    background: "#040182",
+  display: {
+    background: "#d3d3d3",
+    width: "75%",
+    textAlign: "center",
   },
   calcButton: {
     width: "3.5em",
@@ -37,29 +42,74 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1%",
   },
   myBtnRow: {
-    marginBottom: "1%",
+    margin: "2% 0",
   },
 }));
 
 //////////////////////////////////////////////////////
 
-const createDigits = () => {
-  const digits = [];
-
-  for (let i = 1; i < 10; i++) {
-    digits.push(
-      <Button className="calcButton" key={i}>
-        {i}
-      </Button>
-    );
-  }
-
-  return digits;
-};
-
 /////////////////////////////////////////////////////
 
 const App = () => {
+  const [calc, setCalc] = useState("");
+  const [result, setResult] = useState("");
+
+  const ops = ["/", "*", "+", "-", "."];
+
+  const updateCalc = (value) => {
+    if (
+      (ops.includes(value) && calc === "") ||
+      (ops.includes(value) && ops.includes(calc.slice(-1)))
+    ) {
+      return;
+    }
+    setCalc(calc + value);
+
+    if (!ops.includes(value)) {
+      setResult(eval(calc + value).toString());
+    }
+  };
+
+  const calculate = () => {
+    setCalc(eval(calc).toString());
+  };
+
+  const deleteLast = () => {
+    if (calc === "") {
+      return;
+    }
+    const value = calc.slice(0, -1);
+    setCalc(value);
+  };
+
+  const clearAll = () => {
+    if (calc === "") {
+      return;
+    }
+    const value = "";
+    const result = "";
+    setCalc(value);
+    setResult(result);
+  };
+
+  const createDigits = () => {
+    const digits = [];
+
+    for (let i = 1; i < 10; i++) {
+      digits.push(
+        <Button
+          onClick={() => updateCalc(i.toString())}
+          key={i}
+          className={myClasses.calcButton}
+        >
+          {i}
+        </Button>
+      );
+    }
+
+    return digits;
+  };
+
   const myClasses = useStyles();
 
   return (
@@ -81,34 +131,73 @@ const App = () => {
           <div>
             <Container maxWidth="sm">
               <Typography
-                variant="h2"
+                variant="h4"
                 align="center"
                 color="textPrimary"
                 gutterBottom
               >
                 RPM Calculator
               </Typography>
-              <Typography
-                variant="h5"
-                align="center"
-                color="textSecondary"
-                paragraph
-              ></Typography>
+
+              <Grid container spacing={2} justify="center">
+                <div className={myClasses.display}>
+                  {result ? <span>({result})</span> : ""}
+                  &nbsp;
+                  {calc || "0"}
+                </div>
+              </Grid>
               <Grid container spacing={2} justify="center">
                 <div style={{}}>
                   <ButtonGroup
                     variant="contained"
                     aria-label="outlined primary button group"
-                    className={myClasses.btnRow}
+                    className={myClasses.myBtnRow}
                   >
                     {createDigits()}
                   </ButtonGroup>
-                  <ButtonGroup
-                    variant="contained"
-                    aria-label="outlined primary button group"
-                    className={myClasses.btnRow}
-                  ></ButtonGroup>
                 </div>
+              </Grid>
+              <Grid container spacing={2} justify="center">
+                <ButtonGroup
+                  variant="contained"
+                  aria-label="outlined primary button group"
+                  className={myClasses.btnRow}
+                >
+                  <Button onClick={clearAll} className={myClasses.calcButton}>
+                    C
+                  </Button>
+
+                  <Button
+                    onClick={() => updateCalc("+")}
+                    className={myClasses.calcButton}
+                  >
+                    +
+                  </Button>
+                  <Button
+                    onClick={() => updateCalc("-")}
+                    className={myClasses.calcButton}
+                  >
+                    -
+                  </Button>
+                  <Button
+                    onClick={() => updateCalc("*")}
+                    className={myClasses.calcButton}
+                  >
+                    *
+                  </Button>
+                  <Button
+                    onClick={() => updateCalc("/")}
+                    className={myClasses.calcButton}
+                  >
+                    /
+                  </Button>
+                  <Button onClick={calculate} className={myClasses.calcButton}>
+                    =
+                  </Button>
+                  <Button onClick={deleteLast} className={myClasses.calcButton}>
+                    DEL
+                  </Button>
+                </ButtonGroup>
               </Grid>
             </Container>
           </div>
