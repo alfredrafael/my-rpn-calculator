@@ -130,6 +130,8 @@ const App = () => {
               >
                 RPM Calculator
               </Typography>
+              <br />
+
               <Grid container spacing={2} justify="center">
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <Input
@@ -190,6 +192,16 @@ const App = () => {
                     inputProps={{ "aria-label": "description" }}
                   />
                 </div>
+                <Typography variant="" align="center">
+                  <br /> My source code:
+                  <a href="https://github.com/alfredrafael/my-rpn-calculator">
+                    https://github.com/alfredrafael/my-rpn-calculator
+                  </a>
+                  <br /> Personal website:
+                  <a href="https://alfredodeveloper.com" target="_blank">
+                    https://alfredodeveloper.com
+                  </a>
+                </Typography>
               </Grid>
             </Container>
           </div>
