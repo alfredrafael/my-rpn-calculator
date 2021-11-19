@@ -93,77 +93,21 @@ const App = () => {
                 align="center"
                 color="textSecondary"
                 paragraph
-              >
-                <div id="div-display"></div>
-              </Typography>
+              ></Typography>
               <Grid container spacing={2} justify="center">
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    alignItems: "flex-end",
-                  }}
-                >
+                <div style={{}}>
                   <ButtonGroup
                     variant="contained"
                     aria-label="outlined primary button group"
                     className={myClasses.btnRow}
                   >
-                    <Button className={myClasses.calcBtnDouble}>CE</Button>
-                    <Button className={myClasses.calcButton}>C</Button>
-                    <Button className={myClasses.calcButton}>/</Button>
+                    {createDigits()}
                   </ButtonGroup>
                   <ButtonGroup
                     variant="contained"
                     aria-label="outlined primary button group"
                     className={myClasses.btnRow}
-                  >
-                    <Button className={myClasses.calcButton}>7</Button>
-                    <Button className={myClasses.calcButton}>8</Button>
-                    <Button className={myClasses.calcButton}>9</Button>
-                    <Button className={myClasses.calcButton}>*</Button>
-                  </ButtonGroup>
-                  <ButtonGroup
-                    variant="contained"
-                    aria-label="outlined primary button group"
-                    className={myClasses.btnRow}
-                  >
-                    <Button className={myClasses.calcButton}>4</Button>
-                    <Button className={myClasses.calcButton}>5</Button>
-                    <Button className={myClasses.calcButton}>6</Button>
-                    <Button className={myClasses.calcButton}>-</Button>
-                  </ButtonGroup>
-                  <ButtonGroup
-                    variant="contained"
-                    aria-label="outlined primary button group"
-                    className={myClasses.btnRow}
-                  >
-                    <Button className={myClasses.calcButton}>1</Button>
-                    <Button className={myClasses.calcButton}>2</Button>
-                    <Button className={myClasses.calcButton}>3</Button>
-                    <Button className={myClasses.calcButton}>+</Button>
-                  </ButtonGroup>
-                  <ButtonGroup
-                    variant="contained"
-                    aria-label="outlined primary button group"
-                    className={myClasses.btnRow}
-                  >
-                    <Button className={myClasses.calcBtnDouble}>0</Button>
-                    <Button className={myClasses.calcButton}>.</Button>
-                    <Button className={myClasses.calcButton}>Enter</Button>
-                  </ButtonGroup>
-                  <div style={{ maxWidth: "20px" }}>
-                    <Grid container spacing={2} justify="center">
-                      <ButtonGroup
-                        variant="contained"
-                        aria-label="outlined primary button group"
-                        className={myClasses.myBtnRow}
-                      >
-                        {createDigits()}
-                      </ButtonGroup>
-                    </Grid>
-                  </div>
+                  ></ButtonGroup>
                 </div>
               </Grid>
             </Container>
