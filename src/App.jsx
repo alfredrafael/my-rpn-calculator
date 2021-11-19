@@ -166,7 +166,7 @@ const App = () => {
                       <Button
                         onClick={() => setOperations(operation.sign)}
                         className={
-                          operations == operation.sign
+                          operations === operation.sign
                             ? myClasses.activeBtn
                             : myClasses.calcButton
                         }
